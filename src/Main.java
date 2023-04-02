@@ -5,6 +5,25 @@
 */
 public class Main {
     public static void main(String[] args) {
-
+        Menu menu = Menu.getInstance();
+        menu.addEntry(new MenuCommand("3)Add User") {
+            @Override
+            public void run() {
+                System.out.println("test1 run");
+            }
+        });
+        menu.addEntry(new MenuCommand("2)Enter maximal body mass") {
+            @Override
+            public void run() {
+                System.out.println("test2 run");
+            }
+        });
+        menu.addEntry(new MenuCommand("1)Chose user") {
+            @Override
+            public void run() {
+                System.out.println("test3 run");
+            }
+        });
+        menu.run();
     }
 }
