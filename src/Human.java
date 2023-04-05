@@ -1,33 +1,22 @@
-public class Human implements I_proteins_fats_carbohydrates {
+public class Human{
     String name;
-    short age;
+    private int res;
+    private boolean isActive;
     boolean is_male;
-    float height;
-    float body_mass;
-    int calories;
-    int proteins;
-    int fats;
-    int carbohydrates;
-    public Human(String name, short age, boolean is_male, float height, float body_mass) {
+    float bodyIndex;
+    Package user_package;
+    public Human(String name, boolean isActive, boolean is_male, float height, float mass) {
         this.name = name;
-        this.age = age;
+        this.isActive = isActive;
         this.is_male = is_male;
-        this.height = height;
-        this.body_mass = body_mass;
+        if(height>10){this.bodyIndex = mass/height*height/10000;}
+        else{this.bodyIndex = mass/height*height;}
     }
-
-    @Override
-    public void eat(int calories, int proteins, int fats, int carbohydrates) {
-        this.calories += calories;
-        this.proteins += proteins;
-        this.fats += fats;
-        this.carbohydrates += carbohydrates;
-    }
-    @Override
-    public void burn(int calories, int proteins, int fats, int carbohydrates) {
-        this.calories -= calories;
-        this.proteins -= proteins;
-        this.fats -= fats;
-        this.carbohydrates -= carbohydrates;
+    public void YourPackage(Package[] packages){
+        for (int i = 0; i < packages.length; i++) {
+            if(packages[i].isEval(this.is_male, this.bodyIndex, this.isActive, this.res)){
+                this.user_package = packages[i];
+            }
+        }
     }
 }
