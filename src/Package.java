@@ -19,7 +19,7 @@ public class Package {
         foodList.add(food_to_add);
     }
 
-    public boolean isEval(boolean is_male, float bodyIndex, boolean isActive, int res){
+    public boolean isEval(boolean is_male, double bodyIndex, boolean isActive, int res){
         if((is_male == this.is_male) && (bodyIndex < bodyIndexHight) && (bodyIndex > bodyIndexLow) && (this.isActive == isActive) && (this.res == res)){
             return true;
         }

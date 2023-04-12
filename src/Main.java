@@ -28,7 +28,7 @@ public class Main {
             menu.addEntry(new MenuCommand("3)Add User") {
                 @Override
                 public void run() {
-                    connection.insert();
+                    connection.InsertFromConsole();
                     connection.printTableToConsole();
                 }
             });
@@ -41,7 +41,7 @@ public class Main {
             menu.addEntry(new MenuCommand("1)Chose user") {
                 @Override
                 public void run() {
-                    System.out.println("test3 run");
+                    connection.selectUser("Gleb").printDataToConsole();
                 }
             });
             menu.run();

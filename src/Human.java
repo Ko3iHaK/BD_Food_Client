@@ -3,13 +3,14 @@ public class Human{
     private int res;
     private boolean isActive;
     boolean is_male;
-    float bodyIndex;
+    double bodyIndex;
     Package user_package;
-    public Human(String name, boolean isActive, boolean is_male, float height, float mass) {
+    public Human(String name, int res, boolean isActive, boolean is_male, double height, double mass) {
         this.name = name;
+        this.res = res;
         this.isActive = isActive;
         this.is_male = is_male;
-        if(height>10){this.bodyIndex = mass/height*height/10000;}
+        if(height>10.){this.bodyIndex = mass/(height*height/10000.);}
         else{this.bodyIndex = mass/height*height;}
     }
     public void YourPackage(Package[] packages){
@@ -18,5 +19,8 @@ public class Human{
                 this.user_package = packages[i];
             }
         }
+    }
+    void printDataToConsole(){
+        System.out.println(name + "\t|"+res + "\t|"+isActive + "\t|"+is_male + "\t|"+ String.format("%.2f",bodyIndex) + "\t|");
     }
 }

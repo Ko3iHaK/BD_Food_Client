@@ -20,7 +20,7 @@ public abstract class DataBaseConnection {
     }
     public void insert(){}
     public void printTableToConsole(){}
-    public void consoleInsertFromConsole(){}
+    public void InsertFromConsole(){}
     public void close(){
         try {
             co.close();
