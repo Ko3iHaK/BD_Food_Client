@@ -5,12 +5,14 @@ public class Eat {
         this.proteins = proteins;
         this.fats = fats;
         this.carbohydrates = carbohydrates;
+        this.veganFood = veganFood;
     }
     private final String foodName;
     private final int calories;
     private final int proteins;
     private final int fats;
     private final int carbohydrates;
+    private boolean veganFood;
 
     public void parameters(){
         System.out.println("| Name: "+ foodName+"| Calories: "+ calories + "| Proteins: "+proteins + "| Fats: "+ fats + "| Carbohydrates: "+ carbohydrates + "| ");
