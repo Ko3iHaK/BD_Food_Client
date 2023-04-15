@@ -1,4 +1,9 @@
-import java.util.ArrayList;
+import DataBase.*;
+import food_picking.*;
+import Menu.MenuCommand;
+import Menu.Menu;
+
+
 
 /* Вариант 21. Разработайте объектно-ориентированную модель для конструктора расчётов рациона ( количества белков, жиров, углеводов ).
 * Система должна быть расширяема по характеристикам человека, по режимам физической деятельности и ожидаемым результатам.
@@ -10,13 +15,7 @@ public class Main {
         try {
             UsersDB connection = new UsersDB("jdbc:sqlite:users.db");
             connection.printTableToConsole();
-            ArrayList<Package> packageArrayList = new ArrayList<>();
-            /*
-            for (int i = 0; i < 24; i++) {
-                packageArrayList.add(new Package(i, (i<=11), (i % 2 == 1 ? 1: -1 ), (i % 2 == 1)));
-                packageArrayList.get(i).printData();
-            }
-            */
+
 
             Menu menu = Menu.getInstance();
             menu.addEntry(new MenuCommand("4)Print table") {
