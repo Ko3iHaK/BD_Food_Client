@@ -17,6 +17,10 @@ public class Package {
         this.res = res;
         this.is_male = is_male;
     }
+    public Package(ArrayList<Eat> foodList){
+        this.foodList = foodList;
+    }
+    public Package(){}
     public void addFood(Eat food_to_add){
         foodList.add(food_to_add);
     }

@@ -32,4 +32,7 @@ public abstract class DataBaseConnection {
         }
     }
 
+    public int findIdFromName(String name) {
+        return 0;
+    }
 }

@@ -24,6 +24,8 @@
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="1099f7d5-567f-4786-9a29-5ac1e517ef28" dataset="main.users" active-filter-id="" />
+    <filter-actions connection-id="1099f7d5-567f-4786-9a29-5ac1e517ef28" dataset="main.package_eat" active-filter-id="" />
+    <filter-actions connection-id="1099f7d5-567f-4786-9a29-5ac1e517ef28" dataset="main.eat" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

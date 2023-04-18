@@ -17,12 +17,12 @@ public class EatBD extends DataBaseConnection {
         try {
             String[] temp = coUrl.split(":");
             String[] temp2 = temp[temp.length - 1].split("\\.");
-            String query = "SELECT * FROM " + temp2[0];
+            String query = "SELECT * FROM eat";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
+                int id = res.getInt("eat_id");
+                String name = res.getString("eat_name");
                 int cal = res.getInt("cal");
                 int proteins = res.getInt("proteins");
                 int fats = res.getInt("fats");
@@ -48,7 +48,7 @@ public class EatBD extends DataBaseConnection {
             int fats = scanner.nextInt();
             System.out.println("Enter food's carbohydrates: ");
             int carbohydrates = scanner.nextInt();
-            String query = "INSERT INTO users (name, res, isActive, isMale, height, body_mass) " +
+            String query = "INSERT INTO eat (eat_name, cal, proteins, fats, carbohydrates) " +
                     "VALUES ('" + name + "'," + cal + "," + proteins + "," + fats + "," + carbohydrates + ")";
             Statement statement = co.createStatement();
             statement.executeUpdate(query);
@@ -61,7 +61,7 @@ public class EatBD extends DataBaseConnection {
         try {
             String[] temp = coUrl.split(":");
             String[] temp2 = temp[temp.length - 1].split("\\.");
-            String query = "SELECT * FROM " + temp2[0] + " WHERE name = '" + EatName + "' LIMIT 1";;
+            String query = "SELECT * FROM eat WHERE name = '" + EatName + "' LIMIT 1";;
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
@@ -81,5 +81,21 @@ public class EatBD extends DataBaseConnection {
             return null;
         }
         return null;
+    }
+    @Override
+    public int findIdFromName(String name){
+        try {
+            String[] temp = coUrl.split(":");
+            String[] temp2 = temp[temp.length - 1].split("\\.");
+            String query = "SELECT id FROM eat WHERE name = '"+name+"'";
+            Statement statement = co.createStatement();
+            ResultSet res = statement.executeQuery(query);
+            int id = res.getInt("eat_id");
+            return id;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return -1;
     }
 }

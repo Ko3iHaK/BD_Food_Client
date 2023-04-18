@@ -29,7 +29,7 @@ public class UsersDB extends DataBaseConnection {
             double height = scanner.nextDouble();
             System.out.println("Enter body_mass: ");
             double body_mass = scanner.nextDouble();
-            String query = "INSERT INTO users (name, res, isActive, isMale, height, body_mass) " +
+            String query = "INSERT INTO users (user_name, res, isActive, isMale, height, body_mass) " +
                     "VALUES ('" + name + "'," + res + "," + isActive + "," + isMale + "," + height + "," + body_mass + ")";
             Statement statement = co.createStatement();
             statement.executeUpdate(query);
@@ -48,8 +48,8 @@ public class UsersDB extends DataBaseConnection {
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
+                int id = res.getInt("user_id");
+                String name = res.getString("user_name");
                 int result = res.getInt("res");
                 boolean isActive = res.getBoolean("isActive");
                 boolean is_male = res.getBoolean("isMale");

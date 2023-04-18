@@ -24,14 +24,14 @@ public class Main {
                     connection.printTableToConsole();
                 }
             });
-            menu.addEntry(new MenuCommand("3)Add User") {
+            menu.addEntry(new MenuCommand("3)Add User, Package, Eat") {
                 @Override
                 public void run() {
                     connection.InsertFromConsole();
                     connection.printTableToConsole();
                 }
             });
-            menu.addEntry(new MenuCommand("2)Enter maximal body mass") {
+            menu.addEntry(new MenuCommand("2)***") {
                 @Override
                 public void run() {
                     System.out.println("test2 run");
