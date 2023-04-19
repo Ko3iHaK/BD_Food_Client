@@ -33,6 +33,7 @@ public class Package {
     }
     public void printData(){
         System.out.println("| packageNumber: "+ packageNumber+"| isActive: "+ isActive + "| res: "+res + "| is_male: "+ is_male);
+
     }
 
 }

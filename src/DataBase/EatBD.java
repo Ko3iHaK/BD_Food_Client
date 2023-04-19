@@ -85,9 +85,7 @@ public class EatBD extends DataBaseConnection {
     @Override
     public int findIdFromName(String name){
         try {
-            String[] temp = coUrl.split(":");
-            String[] temp2 = temp[temp.length - 1].split("\\.");
-            String query = "SELECT id FROM eat WHERE name = '"+name+"'";
+            String query = "SELECT eat_id FROM eat WHERE eat_name = '"+name+"'";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             int id = res.getInt("eat_id");

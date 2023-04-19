@@ -58,7 +58,7 @@ public class PackageDB extends DataBaseConnection{
     @Override
     public int findIdFromName(String name){
         try {
-            String query = "SELECT id FROM package WHERE name = '"+name+"'";
+            String query = "SELECT package_id FROM package WHERE package_name = '"+name+"'";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             int id = res.getInt("package_id");
@@ -73,6 +73,7 @@ public class PackageDB extends DataBaseConnection{
         try {
             int eat = findIdFromName(EatName);
             int pac = findIdFromName(PackageName);
+            System.out.println(pac+"|\t "+eat);
             String query = "INSERT INTO package_eat (package_id, eat_id) VALUES ("+pac+", "+eat+")";
             Statement statement = co.createStatement();
             statement.executeUpdate(query);
@@ -87,5 +88,29 @@ public class PackageDB extends DataBaseConnection{
 
         Package temp = new Package();
         return temp;
+    }
+    public void printRelation(){
+        try {
+            String query = "SELECT * FROM package_eat";
+            Statement statement = co.createStatement();
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()) {
+                int id1 = res.getInt("package_id");
+                int id2 = res.getInt("eat_id");
+                System.out.println(id1 + "\t| " + id2);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void deleteReletion(){
+        try {
+            String query = "DELETE FROM package_eat";
+            Statement statement = co.createStatement();
+            statement.executeUpdate(query);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
