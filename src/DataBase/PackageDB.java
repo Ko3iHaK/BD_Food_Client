@@ -69,9 +69,9 @@ public class PackageDB extends DataBaseConnection{
         }
         return -1;
     }
-    public void addEatToPackage(String PackageName, String EatName){
+    public void addEatToPackage(String PackageName, String EatName, EatBD EatBDconnection){
         try {
-            int eat = findIdFromName(EatName);
+            int eat = EatBDconnection.findIdFromName(EatName);
             int pac = findIdFromName(PackageName);
             System.out.println(pac+"|\t "+eat);
             String query = "INSERT INTO package_eat (package_id, eat_id) VALUES ("+pac+", "+eat+")";

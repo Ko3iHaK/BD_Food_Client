@@ -44,7 +44,7 @@ public class Main {
                             System.out.print("Input eat name: ");
                             String eat = in.nextLine();
                             System.out.println(pack+"\t|"+eat);
-                            connection3.addEatToPackage(pack, eat);
+                            connection3.addEatToPackage(pack, eat, connection2);
                         }
                     });
                     menu_5_1.addEntry(new MenuCommand("1)Output the relation table") {
