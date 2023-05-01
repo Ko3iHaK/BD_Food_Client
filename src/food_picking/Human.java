@@ -7,6 +7,7 @@ public class Human{
     boolean is_male;
     double bodyIndex;
     Package user_package;
+    public Human(){}
     public Human(String name, int res, boolean isActive, boolean is_male, double height, double mass) {
         this.name = name;
         this.res = res;
@@ -24,5 +25,9 @@ public class Human{
     }
     public void printDataToConsole(){
         System.out.println(name + "\t|"+res + "\t|"+isActive + "\t|"+is_male + "\t|"+ String.format("%.2f",bodyIndex) + "\t|");
+    }
+
+    public void setUser_package(Package user_package) {
+        this.user_package = user_package;
     }
 }

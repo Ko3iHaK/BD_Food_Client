@@ -3,6 +3,7 @@ import food_picking.*;
 import Menu.MenuCommand;
 import Menu.Menu;
 import Menu.InputMenu;
+import food_picking.Package;
 
 import java.util.Scanner;
 
@@ -15,12 +16,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            UsersDB connection = new UsersDB("jdbc:sqlite:users.db");
+            Connect connect = Connect.getInstance("jdbc:sqlite:users.db");
+            UsersDB connection = new UsersDB(connect);
             //connection.printTableToConsole();
-            EatBD connection2 = new EatBD("jdbc:sqlite:users.db");
+            EatBD connection2 = new EatBD(connect);
             //connection2.printTableToConsole();
-            PackageDB connection3 = new PackageDB("jdbc:sqlite:users.db");
+            PackageDB connection3 = new PackageDB(connect);
             //connection3.printTableToConsole();
+            final Human[] user0 = {new Human()};
             System.out.println("||---------------------------------------------------------||");
             System.out.println(connection2.findIdFromName("Гренки белые жареные"));
             //-------------------------------------------------------------------------------//
@@ -50,7 +53,7 @@ public class Main {
                     menu_5_1.addEntry(new MenuCommand("1)Output the relation table") {
                         @Override
                         public void run() {
-                            connection3.printRelation();;
+                            connection3.printRelation();
                         }
                     });
                     menu_5_1.run();
@@ -109,16 +112,37 @@ public class Main {
                     menu_3_1.run();
                 }
             });
-            menu.addEntry(new MenuCommand("2)***") {
+            menu.addEntry(new MenuCommand("2)Packages control") {
                 @Override
                 public void run() {
-                    System.out.println("test2 run");
+                    InputMenu menu_2_1 = new InputMenu();
+                    menu_2_1.addEntry(new MenuCommand("2)") {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                    menu_2_1.addEntry(new MenuCommand("1)Add Package") {
+                        @Override
+                        public void run() {
+                            System.out.println("Enter Package ID: ");
+                            Scanner scanner = new Scanner(System.in);
+                            int ID = scanner.nextInt();
+                            Package pac = new Package();
+                            connection3.getEatListFromPackage(ID, pac);
+                            user0[0].setUser_package(pac);
+                        }
+                    });
                 }
             });
             menu.addEntry(new MenuCommand("1)Chose user") {
                 @Override
                 public void run() {
-                    connection.selectUser("Gleb").printDataToConsole();
+                    System.out.println("Enter UserName: ");
+                    Scanner scanner = new Scanner(System.in);
+                    String name = scanner.nextLine();
+                    user0[0] = connection.selectUser(name);
+                    user0[0].printDataToConsole();
                 }
             });
             menu.run();

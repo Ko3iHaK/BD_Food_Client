@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 
 public class UsersDB extends DataBaseConnection {
-    public UsersDB(String coUrl) {
-        super(coUrl);
+    public UsersDB(Connect connect) {
+        super(connect);
     }
 
     @Override

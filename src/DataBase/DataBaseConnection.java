@@ -3,19 +3,13 @@ package DataBase;
 import java.sql.*;
 
 public abstract class DataBaseConnection {
-    protected Connection co;
+    Connect connect;
+    Connection co;
     protected String coUrl;
 
-    public DataBaseConnection(String coUrl) {
-        try{
-            Class.forName("org.sqlite.JDBC");
-            this.coUrl = coUrl;
-            this.co = DriverManager.getConnection(coUrl);
-            test();
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public DataBaseConnection(Connect connect) {
+        this.connect = connect;
+        co = connect.getCo();
     }
     public void test(){
         System.out.println("Connected");

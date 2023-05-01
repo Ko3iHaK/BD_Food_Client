@@ -8,15 +8,13 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class EatBD extends DataBaseConnection {
-    public EatBD(String coUrl) {
-        super(coUrl);
+    public EatBD(Connect connect) {
+        super(connect);
     }
 
     @Override
     public void printTableToConsole() {
         try {
-            String[] temp = coUrl.split(":");
-            String[] temp2 = temp[temp.length - 1].split("\\.");
             String query = "SELECT * FROM eat";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);

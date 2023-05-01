@@ -1,15 +1,17 @@
 package DataBase;
 
+import food_picking.Eat;
 import food_picking.Package;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PackageDB extends DataBaseConnection{
 
-    public PackageDB(String coUrl) {
-        super(coUrl);
+    public PackageDB(Connect connect) {
+        super(connect);
     }
 
     @Override
@@ -74,7 +76,7 @@ public class PackageDB extends DataBaseConnection{
             int eat = EatBDconnection.findIdFromName(EatName);
             int pac = findIdFromName(PackageName);
             System.out.println(pac+"|\t "+eat);
-            String query = "INSERT INTO package_eat (package_id, eat_id) VALUES ("+pac+", "+eat+")";
+            String query = "INSERT INTO package_eat (packageId, eatId) VALUES ("+pac+", "+eat+")";
             Statement statement = co.createStatement();
             statement.executeUpdate(query);
             System.out.println("Rows added");
@@ -83,11 +85,30 @@ public class PackageDB extends DataBaseConnection{
             System.out.println(e.getMessage());
         }
     }
-    public Package getEatListFromPackage(String Package){
-        String query = "SELECT * FROM eat WHERE (SELECT eat_id FROM package_eat)";
-
-        Package temp = new Package();
-        return temp;
+    public void getEatListFromPackage(int PackageID, Package inPac){
+        try {
+            ArrayList<Eat> foodList = new ArrayList<>();
+            String query = "SELECT * FROM  package_eat LEFT JOIN eat \n" +
+                    "    ON eatId = eat_id\n" +
+                    "    WHERE package_eat.packageId = "+PackageID+";";
+            Statement statement = co.createStatement();
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()) {
+                int tempInt = res.getInt("id");
+                tempInt = res.getInt("packageId");
+                tempInt = res.getInt("eatId");
+                tempInt = res.getInt("eat_id");
+                String name = res.getString("eat_name");
+                int cal = res.getInt("cal");
+                int proteins = res.getInt("proteins");
+                int fats = res.getInt("fats");
+                int carbohydrates = res.getInt("carbohydrates");
+                inPac.addFood(new Eat(name, cal,proteins, fats, carbohydrates, false));
+                System.out.println(tempInt + "\t| " + name + "\t| " + cal + "\t| " + proteins + "\t| " + fats + "\t| " + carbohydrates + "\t| ");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     public void printRelation(){
         try {
@@ -95,8 +116,8 @@ public class PackageDB extends DataBaseConnection{
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
-                int id1 = res.getInt("package_id");
-                int id2 = res.getInt("eat_id");
+                int id1 = res.getInt("packageId");
+                int id2 = res.getInt("eatId");
                 System.out.println(id1 + "\t| " + id2);
             }
         } catch (Exception e) {
