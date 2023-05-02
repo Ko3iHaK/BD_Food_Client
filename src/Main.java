@@ -115,6 +115,7 @@ public class Main {
             menu.addEntry(new MenuCommand("2)Packages control") {
                 @Override
                 public void run() {
+                    System.out.println("Номер 2");
                     InputMenu menu_2_1 = new InputMenu();
                     menu_2_1.addEntry(new MenuCommand("2)") {
                         @Override
@@ -133,6 +134,7 @@ public class Main {
                             user0[0].setUser_package(pac);
                         }
                     });
+                    menu_2_1.run();
                 }
             });
             menu.addEntry(new MenuCommand("1)Chose user") {
