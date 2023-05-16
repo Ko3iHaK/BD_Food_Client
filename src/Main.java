@@ -24,8 +24,8 @@ public class Main {
             PackageDB connection3 = new PackageDB(connect);
             //connection3.printTableToConsole();
             final Human[] user0 = {new Human()};
-            System.out.println("||---------------------------------------------------------||");
-            System.out.println(connection2.findIdFromName("Гренки белые жареные"));
+//            System.out.println("||---------------------------------------------------------||");
+//            System.out.println(connection2.findIdFromName("Гренки белые жареные"));
             //-------------------------------------------------------------------------------//
             Menu menu = Menu.getInstance();
             menu.addEntry(new MenuCommand("5)Work with Packages") {

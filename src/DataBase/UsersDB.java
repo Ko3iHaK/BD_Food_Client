@@ -42,9 +42,7 @@ public class UsersDB extends DataBaseConnection {
     @Override
     public void printTableToConsole() {
         try {
-            String[] temp = coUrl.split(":");
-            String[] temp2 = temp[temp.length - 1].split("\\.");
-            String query = "SELECT * FROM " + temp2[0];
+            String query = "SELECT * FROM users";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
@@ -64,9 +62,8 @@ public class UsersDB extends DataBaseConnection {
 
     public Human selectUser(String UserName) {
         try {
-            String[] temp = coUrl.split(":");
-            String[] temp2 = temp[temp.length - 1].split("\\.");
-            String query = "SELECT * FROM " + temp2[0] + " WHERE name = '" + UserName + "' LIMIT 1";
+
+            String query = "SELECT * FROM users WHERE name = '" + UserName + "' LIMIT 1";
             Statement statement = co.createStatement();
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
