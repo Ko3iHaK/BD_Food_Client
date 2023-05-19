@@ -1,10 +1,12 @@
 import DataBase.*;
+import MultiThread.*;
 import food_picking.*;
 import Menu.MenuCommand;
 import Menu.Menu;
 import Menu.InputMenu;
 import food_picking.Package;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -28,6 +30,34 @@ public class Main {
 //            System.out.println(connection2.findIdFromName("Гренки белые жареные"));
             //-------------------------------------------------------------------------------//
             Menu menu = Menu.getInstance();
+            menu.addEntry(new MenuCommand("6)Test Client-server") {
+                @Override
+                public void run() {
+                    ClientsTread clientsTread1 = new ClientsTread("Поток клиента 1", connection3, 3);
+                    ClientsTread clientsTread2 = new ClientsTread("Поток клиента 2", connection3, 3);
+                    ClientsTread clientsTread3 = new ClientsTread("Поток клиента 3", connection3, 3);
+
+                    //создаём 3 пчелы, скорость того как они носят мёд разная (чтобы было интереснее)
+                    Client client1 = new Client(clientsTread1,60);
+                    Client client2 = new Client(clientsTread2,50);
+                    Client client3 = new Client(clientsTread3,55);
+
+                    //создаём список горшков, которые медведь будет кушать
+                    ArrayList<ClientsTread> pots = new ArrayList<ClientsTread>();
+                    pots.add(clientsTread1);
+                    pots.add(clientsTread2);
+                    pots.add(clientsTread3);
+
+                    //создаём самого медведя
+                    DBInterface DBinterface = new DBInterface(pots);
+
+                    //запускаем все потоки
+                    DBinterface.start();
+                    client1.start();
+                    client2.start();
+                    client3.start();
+                }
+            });
             menu.addEntry(new MenuCommand("5)Work with Packages") {
                 @Override
                 public void run() {

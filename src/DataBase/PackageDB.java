@@ -110,6 +110,29 @@ public class PackageDB extends DataBaseConnection{
             System.out.println(e.getMessage());
         }
     }
+    public void getEatListFromPackage(int PackageID){
+        try {
+            String query = "SELECT * FROM  package_eat LEFT JOIN eat \n" +
+                    "    ON eatId = eat_id\n" +
+                    "    WHERE package_eat.packageId = "+PackageID+";";
+            Statement statement = co.createStatement();
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()) {
+                int tempInt = res.getInt("id");
+                tempInt = res.getInt("packageId");
+                tempInt = res.getInt("eatId");
+                tempInt = res.getInt("eat_id");
+                String name = res.getString("eat_name");
+                int cal = res.getInt("cal");
+                int proteins = res.getInt("proteins");
+                int fats = res.getInt("fats");
+                int carbohydrates = res.getInt("carbohydrates");
+                System.out.println(tempInt + "\t| " + name + "\t| " + cal + "\t| " + proteins + "\t| " + fats + "\t| " + carbohydrates + "\t| ");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public void printRelation(){
         try {
             String query = "SELECT * FROM package_eat";
